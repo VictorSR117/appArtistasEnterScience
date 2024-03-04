@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
 
         // Obter os valores do formulário
-        const artistId = document.getElementById('artistId').value;
+        const artistId = document.getElementById('artistIdModal').value;
         const hiringName = document.getElementById('hiringName').value;
         const fee = document.getElementById('fee').value;
         const eventDate = document.getElementById('eventDate').value;
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Realizar a requisição POST para inserir a contratação
         try {
-            const response = await axios.post('http://localhost:3000/insertHirings', {
+            const response = await axios.post('http://localhost:3000/insertHiring', {
                 artistId,
                 hiringName,
                 fee,
@@ -25,9 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Contratação realizada com sucesso!');
                 // Limpar os campos do formulário após o envio bem-sucedido
                 form.reset();
-                // Fechar o modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('contractModal'));
-                modal.hide();
             } else {
                 throw new Error('Erro ao cadastrar a contratação');
             }
@@ -35,7 +32,5 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
             alert('Ocorreu um erro ao cadastrar a contratação. Por favor, tente novamente.');
         }
-
-        return false; // Evita o comportamento padrão do formulário
     });
 });
