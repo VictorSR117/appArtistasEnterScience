@@ -1,0 +1,8 @@
+.artist-item {
+    border: 1px solid grey;
+    border-radius: .5em;
+}
+
+.firstLetterBigger::first-letter {
+    text-transform: uppercase;
+}

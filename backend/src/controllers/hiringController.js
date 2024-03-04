@@ -1,9 +1,20 @@
-const { listAllRegisterInDb } = require("../database/generics/genericConsults");
+const { listAllRegisterInDb, listAllRegisterInDbById } = require("../database/generics/genericConsults");
 const { insertHiring } = require("../database/hiring/hiringConsults");
 
 const listAllHirings = async (req, res) => {
     try {
         res.status(200).json(await listAllRegisterInDb('hirings'));
+    }
+    catch (error) {
+        console.error(error.message);
+    }
+}
+
+const detailOneHiring = async (req, res) => {
+    let { id } = req.query;
+
+    try {
+        res.status(200).json(await listAllRegisterInDbById('hirings', id));
     }
     catch (error) {
         console.error(error.message);
@@ -33,4 +44,4 @@ const insertNewtHirings = async (req, res) => {
     }
 }
 
-module.exports = { listAllHirings, insertNewtHirings }
+module.exports = { listAllHirings, detailOneHiring, insertNewtHirings }
